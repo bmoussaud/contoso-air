@@ -21,9 +21,6 @@ spec:
       containers:
         - name: contoso-air
           image: myregistry4ha4.azurecr.io/contoso-air:latest
-          envFrom:
-          - secretRef:
-              name: sc-cosmos9af80-secret
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
@@ -40,6 +37,8 @@ spec:
             - secretRef:
                 name: secret-ref
                 optional: true
+            - secretRef:
+              name: sc-cosmos9af80-secret
           livenessProbe:
             tcpSocket:
               port: 3000
