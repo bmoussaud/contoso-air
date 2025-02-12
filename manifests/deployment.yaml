@@ -15,10 +15,15 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: contoso-air
+        azure.workload.identity/use: "true"
     spec:
+      serviceAccountName: sc-account-7c5f7eb4-7220-482e-8658-54c4eb60a0c8
       containers:
         - name: contoso-air
           image: myregistry4ha4.azurecr.io/contoso-air:latest
+          envFrom:
+          - secretRef:
+              name: sc-cosmos9af80-secret
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
